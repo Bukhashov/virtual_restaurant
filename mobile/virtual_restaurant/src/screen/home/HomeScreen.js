@@ -12,9 +12,7 @@ import {IconCoffe} from '../../constans/images';
 // import {Pizza} from '../../constans/pizza';
 // import { Desserts } from "../../constans/desserts";
 
-
-
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     const [textColor, setTextColor] = React.useState("#784212");
     const [isViewMenu, setIsViewMenu] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
@@ -22,8 +20,6 @@ const HomeScreen = () => {
     const [desserts, setDesserts] = React.useState([]);
     const [drinks, setDrinks] = React.useState([]);
     
-    const [data, setDAta] = React.useState([]);
-
     const onPressIsViewMenu = () => {
         setIsViewMenu(!isViewMenu);
     }
@@ -31,7 +27,6 @@ const HomeScreen = () => {
     const feachData = async (label, setInter) => {
         try{
             await axios.get(`${config.API_URI}${config.API_VERSION}/menu/dishes/label/${label}`).then((res) => {
-                console.log(config.API_URI + res.data[0].image);
                 setInter(res.data);
             })
         }
@@ -86,8 +81,8 @@ const HomeScreen = () => {
                         </View>
                         {/*  */}
                         {/* <MenuSafeAreaView datas={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/> */}
-                        <MenuSafeAreaView datas={desserts} title={"Desserts"} textColor={textColor}/>
-                        <MenuSafeAreaView datas={drinks} title={"Fase Food"} textColor={textColor}/>
+                        <MenuSafeAreaView navigation={navigation} datas={desserts} title={"Desserts"} textColor={textColor}/>
+                        <MenuSafeAreaView navigation={navigation} datas={drinks} title={"Fase Food"} textColor={textColor}/>
 
                         <View style={{height: 200}}/>
                     </ScrollView> 
