@@ -9,7 +9,8 @@ import ViewMenuComponent from "../../compotents/ViewMenuItem";
 import MenuSafeAreaView from "../../compotents/MenuSafeAreaView";
 import {BestCoffeImg} from '../../constans/bestCoffeImg';
 import {IconCoffe} from '../../constans/images';
-
+import {Pizza} from '../../constans/pizza';
+import { Desserts } from "../../constans/desserts";
 
 // import BestCoffeImg from "../../constans/bestCoffeImg";
 
@@ -46,7 +47,7 @@ const HomeScreen = () => {
             {/* Wallcome to App */}
             <View style={{  }}>
                 <View style={{ marginHorizontal: 15, marginVertical: 8, }}>
-                    <Text style={{ fontSize: 24, fontWeight: '500', padding: 4, color: textColor }}>Good Morining</Text>
+                    <Text style={{ fontSize: 24, fontWeight: '500', padding: 4, color: textColor }}>Қош келдіңіз!</Text>
                     <Text style={{ fontSize: 16, fontWeight: '400', padding: 4, color: textColor }}>It's Great Day for a Coffe</Text>
                 </View>
             </View>
@@ -80,8 +81,9 @@ const HomeScreen = () => {
                             </View>
                         </View>
                         {/*  */}
-                        <MenuSafeAreaView data={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/>
-                        <MenuSafeAreaView data={BestCoffeImg} title={"Desserts"} textColor={textColor}/>
+                        <MenuSafeAreaView datas={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/>
+                        <MenuSafeAreaView datas={Desserts} title={"Desserts"} textColor={textColor}/>
+                        <MenuSafeAreaView datas={Pizza} title={"Fase Food"} textColor={textColor}/>
 
                         <View style={{height: 200}}/>
                     </ScrollView> 

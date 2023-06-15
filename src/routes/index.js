@@ -24,8 +24,9 @@ router.post('/auth/admin/singup', AuthController.singup);
 
 // MENU
 router.get('/menu/all', Menu.getAll);
-router.get('/munu/dishes/:id', )
-
+router.get('/munu/dishes/:id', Menu.getAll)
+router.post('/menu/dishes/add', Menu.getAll)
+router.post('/menu/dishes/delete', Menu.getAll);
 
 router.post('feedback', feedback => {
     

@@ -5,6 +5,7 @@ import { SearchBar } from '@rneui/themed';
 
 import HomeScreen from '../screen/home/HomeScreen';
 import BasketScreen from '../screen/basket/BasketScreen';
+import ChatScreen from '../screen/home/ChatScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,7 +18,7 @@ const HomeNavigationHaeder = (props) => {
     };
 
     let childrenView;
-    if (props.children == "Main") {
+    if (props.children == "Мәзір") {
         childrenView = <View style={{ width: 280,}}>
             <SearchBar
                 round
@@ -61,10 +62,11 @@ const HomeNavigation = () => {
             }}
             
         >
-            <Drawer.Screen name="HomeScreen" component={HomeScreen} options={{ title: "Main" }} />
-            <Drawer.Screen name="BasketScreen" component={BasketScreen} options={{ title: "Basket" }} />
-            <Drawer.Screen name="InfoScreen" component={BasketScreen} options={{ title: "Info" }} />
-            <Drawer.Screen name="ChatScreen" component={BasketScreen} options={{ title: "Chat" }} />
+            <Drawer.Screen name="HomeScreen" component={HomeScreen} options={{ title: "Мәзір" }} />
+            <Drawer.Screen name="BasketScreen" component={BasketScreen} options={{ title: "Брондау" }} />
+            <Drawer.Screen name="InfoScreen" component={BasketScreen} options={{ title: "MUZA" }} />
+            <Drawer.Screen name="BYScreen" component={ChatScreen} options={{ title: "Мерекелер" }} />
+            <Drawer.Screen name="ChatScreen" component={ChatScreen} options={{ title: "Чат" }} />
         </Drawer.Navigator>
     )
 }
