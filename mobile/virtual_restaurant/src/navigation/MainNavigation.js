@@ -1,11 +1,45 @@
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { ButtonGroup } from '@rneui/themed';
 import HomeNavigation from './HomeNavigation';
 import MapScreen from '../screen/map/mapScreen';
 import BasketScreen from '../screen/basket/BasketScreen';
 import Profile from '../screen/auth/ProfileScreen';
 
+
+const { width, height } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
+
+const MainNavigationHeader = (props) => {
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
+    
+    let profileView;
+    if (props.children == "Profile") {
+        profileView = <View style={{  }}>
+            <ButtonGroup
+                buttons={['KZ', 'RU', 'EN']}
+                selectedIndex={selectedIndex}
+                onPress={(value) => {
+                    setSelectedIndex(value);
+                  }}
+                containerStyle={{ borderColor: "#C2C2C0" }}
+                buttonContainerStyle={{ color: "#C2C2C0" }}
+                buttonStyle={{ backgroundColor: "#fff" }}
+                // disabledStyle={{ backgroundColor: "#fff" }}
+                // innerBorderStyle={{ backgroundColor: "#FFF" }}
+                selectedButtonStyle={{ backgroundColor: "#C2C2C0" }}
+            />
+        </View>
+    }
+
+    return (
+        <View style={{ paddingHorizontal: 15, width: width-30, }}>
+            {profileView}
+        </View>
+    )
+}
 
 const MainNavigation = () => {
     return (
@@ -14,7 +48,7 @@ const MainNavigation = () => {
             tabBarIcon:  ({ focused, color, size }) => {
                 let iconName;
 
-                if(route.name === "Home") iconName = focused ? 'home' : 'home-outline' 
+                if (route.name === "Home") iconName = focused ? 'home' : 'home-outline' 
                 else if (route.name === "Map") iconName = focused ? 'map' : 'map-outline'
                 else if (route.name === "Basket") iconName = focused ? 'person' : 'person-outline' 
                 else if (route.name === "Profile") iconName = focused ? 'person' : 'person-outline' 
@@ -25,38 +59,27 @@ const MainNavigation = () => {
             tabBarShowLabel: false,
             tabBarActiveTintColor: "#C2C2C0",
             tabBarInactiveTintColor: "#C2C2C0",
-            // tabBarLabel: false
             tabBarStyle: {
                 backgroundColor:'#FFF1CF',
                 height: 100,
-                // borderTopColor: "#fff",
-                // borderWidth: 1,
             },
-            
             tabBarItemStyle: {
                 margin: 10,
-                
-                //borderRadius:10,
             },
-            // headerTitle: (props) => <LogoTitle {...props} />,
+            headerStyle: {
+                height: 100,
+                backgroundColor: "#FFF1CF"
+            },
+
+            headerTitle: (props) => <MainNavigationHeader {...props} />,
         })}
         >
             <Tab.Screen name="Home" component={HomeNavigation} />
             <Tab.Screen name="Map" component={MapScreen} />
             <Tab.Screen name="Basket" component={BasketScreen} />
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Profile" options={{ headerShown: true }}  component={Profile}  />
         </Tab.Navigator>
     )
 }
 
 export default MainNavigation;
-
-// const LogoTitle = (props) => {
-//     console.log(props)
-//     return (
-//         <View style={{ display: 'flex', flexDirection: 'row', }}>
-//             <Image style={{ width: 32, height: 32, padding: 5, }} source={require('../constants/logo.png')} />
-//             <Text style={{ color: "#fff", fontSize: 20, fontWeight: '600'}}>{props.children}</Text>
-//         </View>
-//     )
-// }

@@ -9,6 +9,7 @@ import BasketScreen from '../screen/basket/BasketScreen';
 const Drawer = createDrawerNavigator();
 
 const HomeNavigationHaeder = (props) => {
+    console.log(props);
     const [search, setSearch] = React.useState("");
 
     const updateSearch = (search) => {
@@ -16,7 +17,7 @@ const HomeNavigationHaeder = (props) => {
     };
 
     let childrenView;
-    if (props.children == "HomeScreen") {
+    if (props.children == "Main") {
         childrenView = <View style={{ width: 280,}}>
             <SearchBar
                 round
@@ -60,8 +61,10 @@ const HomeNavigation = () => {
             }}
             
         >
-            <Drawer.Screen name="HomeScreen" component={HomeScreen} />
-            <Drawer.Screen name="BasketScreen" component={BasketScreen} />
+            <Drawer.Screen name="HomeScreen" component={HomeScreen} options={{ title: "Main" }} />
+            <Drawer.Screen name="BasketScreen" component={BasketScreen} options={{ title: "Basket" }} />
+            <Drawer.Screen name="InfoScreen" component={BasketScreen} options={{ title: "Info" }} />
+            <Drawer.Screen name="ChatScreen" component={BasketScreen} options={{ title: "Chat" }} />
         </Drawer.Navigator>
     )
 }

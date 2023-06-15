@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, SafeAreaView, ScrollView, } from "react-native"
+import { View, Text, Image, SafeAreaView, TouchableOpacity, ScrollView, } from "react-native"
 import LoadingViewMenuItems from '../../compotents/LoadingViewMenuItems';
 import {IconCoffe} from '../../constans/images';
 
 import ViewMenuComponent from "../../compotents/ViewMenuItem";
+import {BestCoffeImg} from '../../constans/bestCoffeImg';
 
 // import BestCoffeImg from "../../constans/bestCoffeImg";
 
@@ -15,7 +16,7 @@ const HomeScreen = () => {
     const onPressIsViewMenu = () => {
         setIsViewMenu(!isViewMenu);
     }
-    // console.log(BestCoffeImg);
+    console.log(BestCoffeImg);
 
     return (
         <View style={{ backgroundColor: "#FFF1CF" }}>
@@ -60,8 +61,16 @@ const HomeScreen = () => {
                                 <Text style={{ fontSize: 22, fontWeight: '600', color: textColor }}>Best Seller Coffe</Text>
                             </View>
                             <View>
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={true} >
+                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
                                     {
+                                        BestCoffeImg.map((img) => (
+                                            <TouchableOpacity key={img.id}>
+                                                <View style={{ position: 'relative',  paddingHorizontal: 5, }}>
+                                                    <Image style={{ position: 'relative', width: 150, height: 180, borderRadius: 15, }} source={ img.image} />
+                                                    <Text style={{ position: 'absolute', paddingVertical: 10, paddingHorizontal: 15, bottom: 0, textAlign: 'center', color: "#FFF", fontWeight: '500' }}>{img.title}</Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                        ))
                                     }
                                 </ScrollView>
                             </View>
