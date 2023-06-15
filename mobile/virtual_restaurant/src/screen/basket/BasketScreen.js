@@ -1,10 +1,10 @@
-import { View } from "react-native"
+import { View, Image } from "react-native"
 
 
 const BasketScreen = () => {
     return (
         <View>
-
+            
         </View>
     )
 }

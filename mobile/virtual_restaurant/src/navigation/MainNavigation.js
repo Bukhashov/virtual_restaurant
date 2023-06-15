@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Dimensions } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign} from '@expo/vector-icons';
 import { ButtonGroup } from '@rneui/themed';
 import HomeNavigation from './HomeNavigation';
 import MapScreen from '../screen/map/mapScreen';
@@ -50,7 +50,7 @@ const MainNavigation = () => {
 
                 if (route.name === "Home") iconName = focused ? 'home' : 'home-outline' 
                 else if (route.name === "Map") iconName = focused ? 'map' : 'map-outline'
-                else if (route.name === "Basket") iconName = focused ? 'person' : 'person-outline' 
+                else if (route.name === "Basket") iconName = focused ? 'basket' : 'basket-outline' 
                 else if (route.name === "Profile") iconName = focused ? 'person' : 'person-outline' 
 
                 return <Ionicons name={iconName} size={size} color={color} />
