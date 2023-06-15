@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { SearchBar } from '@rneui/themed';
 
-import HomeScreen from '../screen/home/HomeScreen';
+import MenuNavigation from './MenuNavigation';
 import BasketScreen from '../screen/basket/BasketScreen';
 import ChatScreen from '../screen/home/ChatScreen';
 
@@ -62,7 +62,7 @@ const HomeNavigation = () => {
             }}
             
         >
-            <Drawer.Screen name="HomeScreen" component={HomeScreen} options={{ title: "Мәзір" }} />
+            <Drawer.Screen name="MenuNavigation" component={MenuNavigation} options={{ title: "Мәзір" }} />
             <Drawer.Screen name="BasketScreen" component={BasketScreen} options={{ title: "Брондау" }} />
             <Drawer.Screen name="InfoScreen" component={BasketScreen} options={{ title: "MUZA" }} />
             <Drawer.Screen name="BYScreen" component={ChatScreen} options={{ title: "Мерекелер" }} />

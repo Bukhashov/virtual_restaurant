@@ -7,29 +7,32 @@ import config from '../../../config';
 
 import ViewMenuComponent from "../../compotents/ViewMenuItem";
 import MenuSafeAreaView from "../../compotents/MenuSafeAreaView";
-import {BestCoffeImg} from '../../constans/bestCoffeImg';
+// import {BestCoffeImg} from '../../constans/bestCoffeImg';
 import {IconCoffe} from '../../constans/images';
-import {Pizza} from '../../constans/pizza';
-import { Desserts } from "../../constans/desserts";
+// import {Pizza} from '../../constans/pizza';
+// import { Desserts } from "../../constans/desserts";
 
-// import BestCoffeImg from "../../constans/bestCoffeImg";
+
 
 const HomeScreen = () => {
     const [textColor, setTextColor] = React.useState("#784212");
     const [isViewMenu, setIsViewMenu] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
 
+    const [desserts, setDesserts] = React.useState([]);
+    const [drinks, setDrinks] = React.useState([]);
+    
     const [data, setDAta] = React.useState([]);
 
     const onPressIsViewMenu = () => {
         setIsViewMenu(!isViewMenu);
     }
 
-    const feachData = async () => {
+    const feachData = async (label, setInter) => {
         try{
-            await axios.get(`${config.API_URI}${config.API_VERSION}/menu/all`).then((res) => {
+            await axios.get(`${config.API_URI}${config.API_VERSION}/menu/dishes/label/${label}`).then((res) => {
                 console.log(config.API_URI + res.data[0].image);
-                setDAta(res.data);
+                setInter(res.data);
             })
         }
         catch(e){
@@ -38,7 +41,8 @@ const HomeScreen = () => {
     }
 
     useFocusEffect(React.useCallback(() => {
-            feachData();
+            feachData('drinks', setDesserts);
+            feachData('fastfood', setDrinks);
         }, [])
     )
 
@@ -81,9 +85,9 @@ const HomeScreen = () => {
                             </View>
                         </View>
                         {/*  */}
-                        <MenuSafeAreaView datas={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/>
-                        <MenuSafeAreaView datas={Desserts} title={"Desserts"} textColor={textColor}/>
-                        <MenuSafeAreaView datas={Pizza} title={"Fase Food"} textColor={textColor}/>
+                        {/* <MenuSafeAreaView datas={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/> */}
+                        <MenuSafeAreaView datas={desserts} title={"Desserts"} textColor={textColor}/>
+                        <MenuSafeAreaView datas={drinks} title={"Fase Food"} textColor={textColor}/>
 
                         <View style={{height: 200}}/>
                     </ScrollView> 

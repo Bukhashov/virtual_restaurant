@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { BottomSheet } from '@rneui/themed';
+import config from '../../config';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,18 +23,9 @@ const MenuSafeAreaView = ({datas, title, textColor}) => {
                             <>
                             <TouchableOpacity key={data.id} onPress={ () => { onPressChangeIsVisble() }}>
                                 <View style={{ position: 'relative',  paddingHorizontal: 5, }}>
-                                    <Image style={{ position: 'relative', width: 150, height: 180, borderRadius: 15, }} source={data.image} />
-                                    <Text style={{ position: 'absolute', paddingVertical: 10, paddingHorizontal: 15, bottom: 0, textAlign: 'center', color: "#FFF", fontWeight: '500' }}>{data.title}</Text>
+                                    <Image style={{ position: 'relative', width: 150, height: 180, borderRadius: 15, }} source={{uri: config.API_URI+data.image}} />
+                                    <Text style={{ position: 'absolute', paddingVertical: 10, paddingHorizontal: 15, bottom: 0, textAlign: 'center', color: "#FFF", fontWeight: '500' }}>{data.dishes}</Text>
                                 </View>
-                                <BottomSheet key={data.id} modalProps={{ }} isVisible={isVisible}>
-                                    <View style={{ height: height, backgroundColor: "#FFF"}}>
-                                        <View>
-                                            <Image style={{width: width, height: 280, borderBottomLeftRadius: 16, borderBottomRightRadius: 16}} source={data.image} />
-
-                                            <Text onPress={() => onPressChangeIsVisble()}>exit</Text>
-                                        </View>
-                                    </View>
-                                </BottomSheet>
                             </TouchableOpacity>
                             </>
                             ))

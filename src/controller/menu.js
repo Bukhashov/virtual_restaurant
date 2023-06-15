@@ -14,7 +14,7 @@ class Menu {
 
     getByLabel = async (req, res) => {
         const { label } =  req.params;
-        const dishes = await menuModel.find({ label: label });
+        const dishes = await menuModel.find({ label: label }, { dishes: 1, image: 1 });
         res.status(200).json(dishes);
     }
 
