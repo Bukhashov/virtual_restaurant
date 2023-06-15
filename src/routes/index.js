@@ -27,8 +27,8 @@ router.get('/menu/all', Menu.getAll);
 router.get('/munu/dishes/:id', )
 
 
-router.group('feedback', feedback => {
+router.post('feedback', feedback => {
     
 })
 
-module.exports = router.export();
+module.exports = router;

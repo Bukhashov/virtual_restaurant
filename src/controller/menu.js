@@ -2,10 +2,10 @@ const menuModel = require('../models/menu');
 
 class Menu {
     getAll = async (req, res) => {
-        const allMenu = await menuModel({}, { dishes: 1, image: 1 });
+        const allMenu = await menuModel.find({}, { dishes: 1, image: 1 });
         res.status(200).json(allMenu);
     }
-
+    
     getById = async (req, res) => {
         const { id } =  req.params;
         const dishes = await menuModel.findById(id);

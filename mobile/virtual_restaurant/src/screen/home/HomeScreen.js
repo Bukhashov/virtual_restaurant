@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, Image, SafeAreaView, TouchableOpacity, ScrollView, } from "react-native"
 import LoadingViewMenuItems from '../../compotents/LoadingViewMenuItems';
-import {IconCoffe} from '../../constans/images';
+import { useFocusEffect } from '@react-navigation/native';
+import axios from 'axios';
+import config from '../../../config';
 
 import ViewMenuComponent from "../../compotents/ViewMenuItem";
+import MenuSafeAreaView from "../../compotents/MenuSafeAreaView";
 import {BestCoffeImg} from '../../constans/bestCoffeImg';
+import {IconCoffe} from '../../constans/images';
+
 
 // import BestCoffeImg from "../../constans/bestCoffeImg";
 
@@ -13,10 +18,28 @@ const HomeScreen = () => {
     const [isViewMenu, setIsViewMenu] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
 
+    const [data, setDAta] = React.useState([]);
+
     const onPressIsViewMenu = () => {
         setIsViewMenu(!isViewMenu);
     }
-    console.log(BestCoffeImg);
+
+    const feachData = async () => {
+        try{
+            await axios.get(`${config.API_URI}${config.API_VERSION}/menu/all`).then((res) => {
+                console.log(config.API_URI + res.data[0].image);
+                setDAta(res.data);
+            })
+        }
+        catch(e){
+
+        }
+    }
+
+    useFocusEffect(React.useCallback(() => {
+            feachData();
+        }, [])
+    )
 
     return (
         <View style={{ backgroundColor: "#FFF1CF" }}>
@@ -30,7 +53,7 @@ const HomeScreen = () => {
             {/* Menu */}
             <View style={{ backgroundColor: "#FFF", borderTopStartRadius: 22, borderTopEndRadius: 22, paddingHorizontal: 8,  }}>
                 <SafeAreaView>
-                    <ScrollView horizontal={false} showsHorizontalScrollIndicator={true} >
+                    <ScrollView horizontal={false} showsHorizontalScrollIndicator={false} >
                         {/* title */}
                         <View>
                             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 16, marginVertical: 20 }}>
@@ -56,25 +79,11 @@ const HomeScreen = () => {
                                 }
                             </View>
                         </View>
-                       <View>
-                            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 16, marginVertical: 20 }}>
-                                <Text style={{ fontSize: 22, fontWeight: '600', color: textColor }}>Best Seller Coffe</Text>
-                            </View>
-                            <View>
-                                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >
-                                    {
-                                        BestCoffeImg.map((img) => (
-                                            <TouchableOpacity key={img.id}>
-                                                <View style={{ position: 'relative',  paddingHorizontal: 5, }}>
-                                                    <Image style={{ position: 'relative', width: 150, height: 180, borderRadius: 15, }} source={ img.image} />
-                                                    <Text style={{ position: 'absolute', paddingVertical: 10, paddingHorizontal: 15, bottom: 0, textAlign: 'center', color: "#FFF", fontWeight: '500' }}>{img.title}</Text>
-                                                </View>
-                                            </TouchableOpacity>
-                                        ))
-                                    }
-                                </ScrollView>
-                            </View>
-                       </View>
+                        {/*  */}
+                        <MenuSafeAreaView data={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/>
+                        <MenuSafeAreaView data={BestCoffeImg} title={"Desserts"} textColor={textColor}/>
+
+                        <View style={{height: 200}}/>
                     </ScrollView> 
                 </SafeAreaView>
             </View>
