@@ -29,6 +29,9 @@ router.get('/menu/dishes/label/:label', Menu.getByLabel)
 router.post('/menu/dishes/add', Menu.getAll)
 router.post('/menu/dishes/delete', Menu.getAll);
 
+
+// router.get('/chat/get/all', )
+
 router.post('feedback', feedback => {
     
 })

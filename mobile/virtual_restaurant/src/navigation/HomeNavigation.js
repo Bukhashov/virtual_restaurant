@@ -6,6 +6,8 @@ import { SearchBar } from '@rneui/themed';
 import MenuNavigation from './MenuNavigation';
 import BasketScreen from '../screen/basket/BasketScreen';
 import ChatScreen from '../screen/home/ChatScreen';
+import MerekelerNavigation from './MerekelerNavigation';
+import InfoScreen from '../screen/home/infoScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -64,8 +66,8 @@ const HomeNavigation = () => {
         >
             <Drawer.Screen name="MenuNavigation" component={MenuNavigation} options={{ title: "Мәзір" }} />
             <Drawer.Screen name="BasketScreen" component={BasketScreen} options={{ title: "Брондау" }} />
-            <Drawer.Screen name="InfoScreen" component={BasketScreen} options={{ title: "MUZA" }} />
-            <Drawer.Screen name="BYScreen" component={ChatScreen} options={{ title: "Мерекелер" }} />
+            <Drawer.Screen name="InfoScreen" component={InfoScreen} options={{ title: "MUZA" }} />
+            <Drawer.Screen name="MerekelerNavigation" component={MerekelerNavigation} options={{ title: "Мерекелер" }} />
             <Drawer.Screen name="ChatScreen" component={ChatScreen} options={{ title: "Чат" }} />
         </Drawer.Navigator>
     )
