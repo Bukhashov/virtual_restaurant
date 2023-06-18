@@ -1,27 +1,35 @@
 require('dotenv').config();
 const express = require('express');
-const passsport = require('passport')
 const mongoose = require('mongoose');
+const expressFileUpload = require("express-fileupload");
 var cors = require('cors');
-const fileUpload = require("express-fileupload");
-
+const path = require('path');
+const passsport = require('passport');
+const exphbs = require('express-handlebars');
 const routes = require('./src/routes/index');
 
-const port = process.env.APP_PORT | 4000
+const port = process.env.APP_PORT || 4000
 const app = express();
 
-app.use(fileUpload({}))
-app.use(express.static('public'));
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    extname: 'hbs'
+});
+
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', 'views');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressFileUpload({}));
 app.use(express.json());
 app.use(passsport.initialize());
-
-// require('./middleware/passport')(passsport)
 app.use(cors({
     origin: '*',
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}))
+}));
+app.use('/', routes);
 
-app.use('/api/v1', routes)
+// require('./middleware/passport')(passsport)
 
 const start = async () => {
     try {
@@ -31,10 +39,9 @@ const start = async () => {
         .then(() => console.log("DATABASE CONNECTED |> MONGODB"))
         // start rest api
         app.listen(port, () => {
-            console.log(`SERVER STARTED ${process.env.APP_DOMAIN} PORT: ${port}`);
+            console.log(`SERVER STARTED ${process.env.APP_HOST} PORT: ${port}`);
         })
     }
-    
     catch(e){
         console.error(`SERVER| ${e}`);
     }

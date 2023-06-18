@@ -1,13 +1,17 @@
 const {Schema, model} = require('mongoose');
 
 const menu = new Schema({
-    dishes:     {type: String},
+    dishes: {
+        kz: {type: String},
+        ru: {type: String},
+        en: {type: String},
+    },
     descriptions: {
         kz: {type: String},
-        en: {type: String},
         ru: {type: String},
+        en: {type: String},
     },
-    price:      {type: String},
+    price:      {type: Number},
     structure:  {type: String},
     image:      {type: String},
     label:      {type: String}

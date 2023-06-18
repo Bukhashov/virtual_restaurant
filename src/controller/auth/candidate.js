@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
-const candidateModel = require('../models/candidate');
-const { Hash, Compare } = require('../../utils/hash');
+const candidateModel = require('../../models/candidate');
+const { Hash, Compare } = require('../../../utils/hash');
 
 class Auth {
     singin = async (req, res) => {
