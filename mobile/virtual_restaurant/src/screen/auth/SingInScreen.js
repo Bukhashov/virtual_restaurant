@@ -40,7 +40,7 @@ const SingInScreen = ({navigation}) => {
                 />
             </View>
             <View>
-                <Text onPress={() => { auth()}}  
+                <Text onPress={() => { onPressSingIn()}}  
                     style={{
                         paddingHorizontal: 25,
                         paddingVertical: 12,
