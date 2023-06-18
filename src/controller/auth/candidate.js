@@ -10,9 +10,9 @@ class Auth {
             return
         }
 
-        const { email, password, label } = req.body;
+        const { email, password } = req.body;
 
-        const condidate = await candidateModel.find({ label: label, email: email})
+        const condidate = await candidateModel.find({email: email})
         if(!condidate){ 
             res.status(400).json({ "massage" : "email and password indicated incorrectly"})
             return
@@ -31,15 +31,15 @@ class Auth {
         })
     }
     singup = async (req, res) => {
+        console.log("dd")
         var errors = validationResult(req).array();
         if(errors.length >= 1){ 
             res.status(400).json({ "massage" : "email and password indicated incorrectly"})
             return
         }
 
-
-        const {lastname, firstname, email, password, label} = req.body;
-        let emailControl = await candidateModel.find({label: label, email: email});
+        const {lastname, firstname, email, password } = req.body;
+        let emailControl = await candidateModel.find({ email: email});
         if(emailControl.length >= 1){
             res.status(400).json({ "massage" : `${email} already exists`})
             return
@@ -52,7 +52,6 @@ class Auth {
             firstnaem: firstname,
             email: email,
             password: hashPassword,
-            label: label
         }).save();
 
         res.status(201).json({ "massage" : "user created" })

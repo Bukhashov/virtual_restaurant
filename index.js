@@ -27,7 +27,12 @@ app.use(cors({
     origin: '*',
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
+
 app.use('/', routes);
+app.use(function(req, res, next) {
+    res.status(404).send("Oops! The page you're looking for does not exist.");
+    next();
+});
 
 // require('./middleware/passport')(passsport)
 

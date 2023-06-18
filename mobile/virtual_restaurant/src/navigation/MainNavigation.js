@@ -1,7 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Dimensions } from 'react-native';
-import { Ionicons, AntDesign} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect, contentOptions } from '@react-navigation/native';
 import { ButtonGroup } from '@rneui/themed';
 import HomeNavigation from './HomeNavigation';
 import MapScreen from '../screen/map/mapScreen';
@@ -41,7 +43,18 @@ const MainNavigationHeader = (props) => {
     )
 }
 
-const MainNavigation = () => {
+const MainNavigation = ({navigation}) => {
+    const auth = async () => {
+        let t = await AsyncStorage.getItem("uid");
+        if(!t) navigation.navigate("SingInScreen");
+    }
+
+    useFocusEffect(
+        React.useCallback(() => {
+            auth();
+        })
+    )
+
     return (
         <Tab.Navigator
         screenOptions={({route}) => ({

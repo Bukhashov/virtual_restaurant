@@ -6,7 +6,6 @@ const candidate = new Schema({
     email:      {type: String},
     password:   {type: String},
     phone:      {type: String},
-    label:      {type: String}
 });
 
 module.exports = model('candidates', candidate);

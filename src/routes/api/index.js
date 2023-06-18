@@ -9,4 +9,4 @@ router.use('/auth', authRouter);
 router.use('/menu', menuRouter);
 router.use('/feedback', feedbackRouter);
 
-module.exports = router;
+module.exports = router;``

@@ -1,5 +1,11 @@
 const { Router } = require('express');
-const router = Router();
+const adminRouter = Router();
+
+adminRouter.get('/', async (req, res) => {
+    res.render('admin', {
+        title: 'admin'
+    })
+})
 
 
-module.exports = router;
+module.exports = adminRouter;
