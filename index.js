@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const expressFileUpload = require("express-fileupload");
 var cors = require('cors');
-const path = require('path');
 const passsport = require('passport');
 const exphbs = require('express-handlebars');
 const routes = require('./src/routes/index');
@@ -19,7 +18,7 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(expressFileUpload({}));
 app.use(express.json());
 app.use(passsport.initialize());
