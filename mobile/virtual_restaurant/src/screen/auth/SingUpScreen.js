@@ -13,7 +13,7 @@ const SingUpScreen = ({navigation}) => {
     const [firstname, setFirstname] = React.useState("");
     const [emailAddres, setEmailAddress] = React.useState("");
     const [password, setPassword] = React.useState("");
-    
+
     const onPressSingUp = async () => {
         try{
             console.log(`${config.API_URI}${config.API_VERSION}/auth/singup`)
@@ -23,7 +23,7 @@ const SingUpScreen = ({navigation}) => {
                 email: emailAddres,
                 password: password
             }).then(res => {
-                console.log(res.data);
+                navigation.navigate("SingInScreen") 
             })
         }
         catch(e){

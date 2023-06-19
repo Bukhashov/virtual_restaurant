@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Dimensions, Text } from "react-native"
 import { Input } from '@rneui/themed';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import config from '../../../config';
 
@@ -14,10 +15,19 @@ const SingInScreen = ({navigation}) => {
 
     const onPressSingIn = async () => {
         try{
-            await axios.post(`${config.API_URI}${config.API_VERSION}/`)
+            await axios.post(`${config.API_URI}${config.API_VERSION}/auth/singin`, {
+                email: emailAddres,
+                password: password
+            }).then(res => {
+                AsyncStorage.setItem('uid', res.data.uid)
+                AsyncStorage.setItem('firstname', res.data.firstname)
+                AsyncStorage.setItem('lastname', res.data.lastname)
+                AsyncStorage.setItem('email', emailAddres);
+                navigation.navigate("MenuScreen")
+            });
         }
         catch(e){
-
+            console.log(e);
         }
     }
 

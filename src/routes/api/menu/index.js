@@ -7,7 +7,7 @@ MenuRouter.get('/', Menu.getAll);
 // /api/v1/menu/add
 MenuRouter.post('/add', Menu.add);
 // /api/v1/:dishes
-MenuRouter.get('/id/:id', Menu.getById);
+MenuRouter.get('/:id', Menu.getById);
 MenuRouter.get('/label/:label', Menu.getByLabel);
 MenuRouter.post('/update/:id', );
 MenuRouter.delete('/:id', )

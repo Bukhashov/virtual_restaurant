@@ -26,12 +26,13 @@ const HomeScreen = ({navigation}) => {
 
     const feachData = async (label, setInter) => {
         try{
-            await axios.get(`${config.API_URI}${config.API_VERSION}/menu/dishes/label/${label}`).then((res) => {
+            console.log(`${config.API_URI}${config.API_VERSION}/menu/label/${label}`)
+            await axios.get(`${config.API_URI}${config.API_VERSION}/menu/label/${label}`).then((res) => {
                 setInter(res.data);
             })
         }
         catch(e){
-
+            console.log(e);
         }
     }
 

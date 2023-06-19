@@ -12,7 +12,10 @@ const menu = new Schema({
         en: {type: String},
     },
     price:      {type: Number},
-    structure:  {type: String},
+    structure:  {
+        kz: {type: String},
+        ru: {type: String},
+    },
     image:      {type: String},
     label:      {type: String}
 });

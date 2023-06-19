@@ -20,7 +20,8 @@ class Comment {
     }
 
     quantity = async (req, res) => {
-        const menu = await CommentModel.find({});
+        const { id } = req.body;
+        const menu = await CommentModel.find({menu_id: id});
         res.status(200).json({"quantity" : menu.length})
     }
 }

@@ -20,7 +20,9 @@ const MainNavigationHeader = (props) => {
     let profileView;
     if (props.children == "Profile") {
         profileView = <View style={{  }}>
-            <ButtonGroup
+            <Text>Қолданушы</Text>
+            
+            {/* <ButtonGroup
                 buttons={['KZ', 'RU', 'EN']}
                 selectedIndex={selectedIndex}
                 onPress={(value) => {
@@ -32,7 +34,7 @@ const MainNavigationHeader = (props) => {
                 // disabledStyle={{ backgroundColor: "#fff" }}
                 // innerBorderStyle={{ backgroundColor: "#FFF" }}
                 selectedButtonStyle={{ backgroundColor: "#C2C2C0" }}
-            />
+            /> */}
         </View>
     }
 
