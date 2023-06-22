@@ -15,26 +15,12 @@ const { width, height } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
 
 const MainNavigationHeader = (props) => {
-    const [selectedIndex, setSelectedIndex] = React.useState(0);
     
     let profileView;
     if (props.children == "Profile") {
         profileView = <View style={{  }}>
             <Text>Қолданушы</Text>
             
-            {/* <ButtonGroup
-                buttons={['KZ', 'RU', 'EN']}
-                selectedIndex={selectedIndex}
-                onPress={(value) => {
-                    setSelectedIndex(value);
-                  }}
-                containerStyle={{ borderColor: "#C2C2C0" }}
-                buttonContainerStyle={{ color: "#C2C2C0" }}
-                buttonStyle={{ backgroundColor: "#fff" }}
-                // disabledStyle={{ backgroundColor: "#fff" }}
-                // innerBorderStyle={{ backgroundColor: "#FFF" }}
-                selectedButtonStyle={{ backgroundColor: "#C2C2C0" }}
-            /> */}
         </View>
     }
 

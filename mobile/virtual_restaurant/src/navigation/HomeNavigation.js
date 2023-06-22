@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { SearchBar } from '@rneui/themed';
+import i18n from '../../i18n';
 
 import MenuNavigation from './MenuNavigation';
-import BasketScreen from '../screen/basket/BasketScreen';
+import BookingScreen from '../screen/home/BookingScreen';
 import ChatScreen from '../screen/home/ChatScreen';
 import MerekelerNavigation from './MerekelerNavigation';
 import InfoScreen from '../screen/home/infoScreen';
@@ -20,7 +21,7 @@ const HomeNavigationHaeder = (props) => {
     };
 
     let childrenView;
-    if (props.children == "Мәзір") {
+    if (props.children == i18n.t("menu")) {
         childrenView = <View style={{ width: 280,}}>
             <SearchBar
                 round
@@ -64,11 +65,11 @@ const HomeNavigation = () => {
             }}
             
         >
-            <Drawer.Screen name="MenuNavigation" component={MenuNavigation} options={{ title: "Мәзір" }} />
-            <Drawer.Screen name="BasketScreen" component={BasketScreen} options={{ title: "Брондау" }} />
+            <Drawer.Screen name="MenuNavigation" component={MenuNavigation} options={{ title: i18n.t("menu") }} />
+            <Drawer.Screen name="BookingScreen" component={BookingScreen} options={{title: i18n.t("booking") }} />
             <Drawer.Screen name="InfoScreen" component={InfoScreen} options={{ title: "MUZA" }} />
-            <Drawer.Screen name="MerekelerNavigation" component={MerekelerNavigation} options={{ title: "Мерекелер" }} />
-            <Drawer.Screen name="ChatScreen" component={ChatScreen} options={{ title: "Чат" }} />
+            <Drawer.Screen name="MerekelerNavigation" component={MerekelerNavigation} options={{title: i18n.t("holidays") }} />
+            <Drawer.Screen name="ChatScreen" component={ChatScreen} options={{ title: i18n.t("chat")}} />
         </Drawer.Navigator>
     )
 }

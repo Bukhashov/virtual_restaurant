@@ -2,10 +2,10 @@ import { View, Image, Dimensions } from "react-native"
 
 const { width, height } = Dimensions.get('window');
 
-const MerekeScreen = () => {
+const MerekeScreen = (props) => {
     return (
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center',  }}>
-            <Image style={{width: width, height: height-200, }} source={require('../../../assets/images/mereler/photo_5213381473577584931_y.jpg')} />
+            <Image style={{width: width, height: height-200, }} source={props.route.params.image} />
         </View>
     )
 }

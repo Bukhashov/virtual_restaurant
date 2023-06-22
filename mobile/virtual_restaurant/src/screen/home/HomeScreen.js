@@ -80,10 +80,8 @@ const HomeScreen = ({navigation}) => {
                                 }
                             </View>
                         </View>
-                        {/*  */}
-                        {/* <MenuSafeAreaView datas={BestCoffeImg} title={"Best Seller Coffe"} textColor={textColor}/> */}
-                        <MenuSafeAreaView navigation={navigation} datas={desserts} title={"Desserts"} textColor={textColor}/>
-                        <MenuSafeAreaView navigation={navigation} datas={drinks} title={"Fase Food"} textColor={textColor}/>
+                        <MenuSafeAreaView key={"Desserts"} navigation={navigation} datas={desserts} title={"Desserts"} textColor={textColor}/>
+                        <MenuSafeAreaView key={"Fase Food"} navigation={navigation} datas={drinks} title={"Fase Food"} textColor={textColor}/>
 
                         <View style={{height: 200}}/>
                     </ScrollView> 

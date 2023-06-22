@@ -3,6 +3,7 @@ import { View, Text, Dimensions} from "react-native"
 import { Input } from '@rneui/themed';
 import axios from 'axios';
 import config from '../../../config';
+import i18n from '../../../i18n';
 
 var width = Dimensions.get('window').width; //full width
 var height = Dimensions.get('window').height; 
@@ -36,28 +37,28 @@ const SingUpScreen = ({navigation}) => {
             <View style={{width: width-50, }}>
                 <Input 
                     style={{ color: "#A2A9AB", }}
-                    placeholder="Last name"
+                    placeholder={i18n.t("lastname")}
                     value={lastname}
                     onChangeText={(vel) => setLastname(vel)} />
             </View>
             <View style={{width: width-50, }}>
                 <Input 
                     style={{ color: "#A2A9AB", }}
-                    placeholder="First name"
+                    placeholder={i18n.t("firstname")}
                     value={firstname}
                     onChangeText={(vel) => setFirstname(vel)} />
             </View>
             <View style={{width: width-50, }}>
                 <Input 
                     style={{ color: "#A2A9AB", }}
-                    placeholder="Email"
+                    placeholder={i18n.t('email')}
                     value={emailAddres}
                     onChangeText={(vel) => setEmailAddress(vel)} />
             </View>
             <View style={{width: width-50, }}>
                 <Input 
                     style={{color: "#A2A9AB"}}
-                    placeholder="Password" 
+                    placeholder={i18n.t('password')}
                     secureTextEntry={true}
                     value={password}
                     onChangeText={(vel) => setPassword(vel)}
@@ -72,10 +73,10 @@ const SingUpScreen = ({navigation}) => {
                         color: "#FFF",
                         borderRadius: 8,
                     }}
-                    >Login</Text>
+                    >{i18n.t('singup')}</Text>
             </View>
             <View style={{ padding: 5, width: width-80, display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <Text style={{color: "#A2A9AB"}} onPress={()=> navigation.navigate("SingInScreen") }>sing in</Text>
+                <Text style={{color: "#A2A9AB"}} onPress={()=> navigation.navigate("SingInScreen") }>{i18n.t('singin')}</Text>
             </View>
         </View>
     )
