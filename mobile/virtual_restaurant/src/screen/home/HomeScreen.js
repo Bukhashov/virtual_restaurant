@@ -19,7 +19,9 @@ const HomeScreen = ({navigation}) => {
 
     const [desserts, setDesserts] = React.useState([]);
     const [drinks, setDrinks] = React.useState([]);
-    
+    const [fasefood, setFaseFood] = React.useState([]);
+    const [breakfast, setBreakfast] = React.useState([]);
+
     const onPressIsViewMenu = () => {
         setIsViewMenu(!isViewMenu);
     }
@@ -37,8 +39,11 @@ const HomeScreen = ({navigation}) => {
     }
 
     useFocusEffect(React.useCallback(() => {
-            feachData('drinks', setDesserts);
-            feachData('fastfood', setDrinks);
+            
+        feachData('drinks', setDrinks);
+        feachData('fastfood', setFaseFood);
+        feachData('desserts', setDesserts);
+        feachData('breakfast', setBreakfast);
         }, [])
     )
 
@@ -80,9 +85,10 @@ const HomeScreen = ({navigation}) => {
                                 }
                             </View>
                         </View>
+                        <MenuSafeAreaView key={"Coffe"} navigation={navigation} datas={drinks} title={"Coffe"} textColor={textColor}/>
                         <MenuSafeAreaView key={"Desserts"} navigation={navigation} datas={desserts} title={"Desserts"} textColor={textColor}/>
-                        <MenuSafeAreaView key={"Fase Food"} navigation={navigation} datas={drinks} title={"Fase Food"} textColor={textColor}/>
-
+                        <MenuSafeAreaView key={"Fase Food"} navigation={navigation} datas={fasefood} title={"Fase Food"} textColor={textColor}/>
+                        <MenuSafeAreaView key={"Breakfast"} navigation={navigation} datas={breakfast} title={"Таңғы ас"} textColor={textColor}/>
                         <View style={{height: 200}}/>
                     </ScrollView> 
                 </SafeAreaView>

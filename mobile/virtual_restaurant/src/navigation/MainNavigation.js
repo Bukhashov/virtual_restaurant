@@ -7,7 +7,7 @@ import { useFocusEffect, contentOptions } from '@react-navigation/native';
 import { ButtonGroup } from '@rneui/themed';
 import HomeNavigation from './HomeNavigation';
 import MapScreen from '../screen/map/mapScreen';
-import BasketScreen from '../screen/basket/BasketScreen';
+import BasketNavigation from './BasketNavigation';
 import Profile from '../screen/auth/ProfileScreen';
 
 
@@ -77,7 +77,7 @@ const MainNavigation = ({navigation}) => {
         >
             <Tab.Screen name="Home" component={HomeNavigation} />
             <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Basket" component={BasketScreen} />
+            <Tab.Screen name="Basket" component={BasketNavigation} />
             <Tab.Screen name="Profile" options={{ headerShown: true }}  component={Profile}  />
         </Tab.Navigator>
     )

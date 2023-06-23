@@ -2,23 +2,32 @@ import React from 'react';
 import { View, Button, Text, ImageBackground, Dimensions, TouchableOpacity} from "react-native"
 import BookingNumberComponent from "../../compotents/bookingNumber";
 import BookingNumberFlexStrartComponent from "../../compotents/bookingNumberFlexStrartComponent";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BottomSheet, ListItem, Input } from '@rneui/themed';
 import { Ionicons } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
 import i18n from '../../../i18n';
 import {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
+import axios from 'axios';
+import config from '../../../config';
 
 const { width, height } = Dimensions.get("window");
 
-const BackImg = require("../../../assets/images/booking.jpg")
+const BackImg = require("../../../assets/images/booking.jpg");
 
 const BookingScreen = () => {
     const [isVisible, setIsVisible] = React.useState(false);
     const [phoneNumber, setPhoneNumber] = React.useState("");
     const [tableNumber, setTableNumber] = React.useState("");
     const [number, setNumber] = React.useState(1);
-    const [date, setDate] = React.useState(new Date(1598051730000));
-    
+    const [date, setDate] = React.useState(new Date());
+
+    const [dateDay, setDateDay] = React.useState(date.getDate());
+    const [dateMonth, setDateMonth] = React.useState(date.getMonth()+1);
+    const [dateYear, setDateYear] = React.useState(date.getFullYear());
+    const [dateHours, setDateHours] = React.useState(date.getHours());
+    const [dateMinutes, setDateMinutes] = React.useState(date.getMinutes());
+
     const onPressChangeIsVisble = (number) => {
         setTableNumber(number);
         setNumber(1);
@@ -37,7 +46,11 @@ const BookingScreen = () => {
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate;
         setDate(currentDate);
-        console.log(date);
+        setDateDay(currentDate.getDate());
+        setDateMonth(currentDate.getMonth()+1);
+        setDateYear(currentDate.getFullYear());
+        setDateHours(currentDate.getHours());
+        setDateMinutes(currentDate.getMinutes());
     };
     
     const showMode = (currentMode) => {
@@ -57,6 +70,29 @@ const BookingScreen = () => {
         showMode('time');
     };
 
+    const Booking = async () => {
+        try{
+            await axios.post(`${config.API_URI}${config.API_VERSION}/booking/add`, {
+                candidate_id: await AsyncStorage.getItem('uid').then(vel => vel),
+                table_number: tableNumber,
+                peple: number,
+                phone: phoneNumber,
+                date: {
+                    day: dateDay,
+                    month: dateMonth,
+                    year: dateYear,
+                    hours: dateHours,
+                    minutes: dateMinutes
+                }
+            });
+            onPressChangeIsVisble(0);
+        }
+        catch(e){
+            console.log(e);
+        }
+        
+    }
+    
     return (
         <View style={{ flex: 1 }}>
             <ImageBackground source={BackImg} style={{ width: width, height: height }}>
@@ -132,11 +168,11 @@ const BookingScreen = () => {
                                         borderColor: "#784212", borderWidth: 1, borderRadius: 8, 
                                     }}
                                 >
-                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ date.getDay()+1}</Text>
+                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ dateDay }</Text>
                                     <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>/</Text>
-                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ date.getMonth()+1}</Text>
+                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ dateMonth }</Text>
                                     <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>/</Text>
-                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ date.getFullYear()}</Text>
+                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ dateYear }</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={showTimepicker}
                                     style={{ 
@@ -145,15 +181,16 @@ const BookingScreen = () => {
                                         borderColor: "#784212", borderWidth: 1, borderRadius: 8, 
                                     }}
                                 >
-                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ date.getHours()}</Text>
+                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ dateHours }</Text>
                                     <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>:</Text>
-                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ date.getMinutes()}</Text>
+                                    <Text style={{ fontSize: 24, fontWeight: '600', color: "#784212", }}>{ dateMinutes }</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={{ width: width-25, height: 2, backgroundColor: "#C2C2C0"}}/>
                             
                             <View style={{ paddingVertical: 15, display: 'flex', flexDirection: 'row', justifyContent: 'center', }}>
-                                <Text style={{ paddingHorizontal: 15, paddingVertical: 15, borderRadius: 8,
+                                <Text onPress={() => {Booking()}}
+                                    style={{ paddingHorizontal: 15, paddingVertical: 15, borderRadius: 8,
                                     fontSize: 18, color: "#FFF", backgroundColor: "#784212" }}>Брондау</Text>
                             </View>
                         </View>
