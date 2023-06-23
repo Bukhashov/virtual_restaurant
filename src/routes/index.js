@@ -5,7 +5,7 @@ const admin = require('./admin/index');
 const view = require('./view/index');
 
 router.use('/api/v1', api);
-router.use('/admin', admin);
-router.use('/', view);
+// router.use('/admin', admin);
+// router.use('/', view);
 
 module.exports = router;
